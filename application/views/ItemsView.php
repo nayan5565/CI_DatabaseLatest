@@ -1,10 +1,6 @@
-<?php
+<?php 
 
-//echo 'Records data from Items table';
-//foreach ($records as $rec) {
-//    echo "<br/>" . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status;
-//}
-
-echo $generated_code;
-
-
+echo 'Records data from Items table';
+foreach ($records as $rec) {
+    echo "<br/>" . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status;
+}

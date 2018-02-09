@@ -74,7 +74,7 @@ class Nayan extends CI_Controller {
 
     public function getJointData() {
         $id = 3;
-        // $this->ItemModel->test();
+//         $this->ItemModel->test();
         $data['records'] = $this->ItemModel->jointTbl($id);
         $this->load->view('ItemsView', $data);
     }

@@ -26,32 +26,26 @@ class ItemModel extends CI_Model {
         $this->db->select('
                 items.*,              
                 category.id,
-                category.title
-                
+                category.title             
                 ');
         $this->db->from('items');
         $this->db->join('category', 'category.id=items.categoryId');
-        //$this->db->where('items.id',$id);
+        $this->db->where('items.id',$id);
         $query = $this->db->get();
 //        return $query->result();
         $result = $query->result();
-        return $this->table->generate($result);
+        print_r($result);
     }
 
     public function test() {
         $this->db->select('items.*');
         $this->db->from('items');
         $this->db->join('category', 'category.id=items.categoryId', 'left');
-        //$this->db->where('items.id','3');
+        $this->db->where('items.id','3');
         $query = $this->db->get();
         $result = $query->result();
         print_r($result);
     }
-    
-    public function get_table()
-{
-   $query = $this->db->get('items');
-   return $this->table->generate($query);
-}
+   
 
 }
