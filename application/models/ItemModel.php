@@ -29,12 +29,13 @@ class ItemModel extends CI_Model {
                 category.title             
                 ');
         $this->db->from('items');
-        $this->db->join('category', 'category.id=items.categoryId');
+        $this->db->join('category', 'category.id=items.categoryId','left');
         $this->db->where('items.id',$id);
         $query = $this->db->get();
 //        return $query->result();
         $result = $query->result();
-        print_r($result);
+        return $result;
+   
     }
 
     public function test() {
