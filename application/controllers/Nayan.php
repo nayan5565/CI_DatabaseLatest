@@ -10,14 +10,17 @@ class Nayan extends CI_Controller {
         $this->load->model('CategoryModel');
         $this->load->model('ItemModel');
         
-     
+
 
 //        $this->load->view('CategoryView', $data);
     }
 
-    function index() {
-
-//        echo 'hi i am nayan from bangladesh';
+    public function index() {
+        $data['records'] = $this->ItemModel->getData();
+        $this->load->view('table', $data);
+//   $this->load->model('ItemModel');
+//   $data['generated_code'] = $this->ItemModel->get_table(); 
+//   $this->load->view('ItemsView', $data);
     }
 
     public function insertCat() {
@@ -68,10 +71,12 @@ class Nayan extends CI_Controller {
         $updated = $this->db->update("data", $data);
         print_r($updated);
     }
-    
-    public function getJointData(){
-        $id='3';
-        $this->ItemModel->jointTbl($id);
+
+    public function getJointData() {
+        $id = 3;
+        // $this->ItemModel->test();
+        $data['records'] = $this->ItemModel->jointTbl($id);
+        $this->load->view('ItemsView', $data);
     }
 
 }
