@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head> Table Sample</head>
+    <head> 
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: inherit;
+                background-color: #f1f1c1;
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
+            }
+        </style>
+
+    </head>
+
     <body>
 
-        <table style="width:100%">
+        <table>
+            <caption>Table Sample</caption>
             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th> 
-                <th>Age</th>
+                <th>status</th>
+                <th>title</th> 
+                <th>details</th>
+                <th>categoryTitle</th>
             </tr>
-           
+
             <?php
             foreach ($records as $rec) {
                 echo '<tr>'
-                .'<td>'.$rec->status .' </td>'
-                .'<td>'.$rec->title .' </td>'
-                .'<td>'.$rec->details .' </td>'
-            .'</tr>';
+                . '<td>' . $rec->status . ' </td>'
+                . '<td>' . $rec->title . ' </td>'
+                . '<td>' . $rec->details . ' </td>'
+                . '<td>' . $rec->title . ' </td>'
+                . '</tr>';
 //                echo "<br/>" . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status;
             }
             ?>
