@@ -26,7 +26,7 @@ class ItemModel extends CI_Model {
         $this->db->select('
                 items.*,              
                 category.id,
-                category.title             
+                category.title as categoryTitle             
                 ');
         $this->db->from('items');
         $this->db->join('category', 'category.id=items.categoryId','left');
