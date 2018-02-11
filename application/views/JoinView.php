@@ -20,25 +20,17 @@
                 -webkit-transition: width 0.4s ease-in-out;
                 transition: width 0.4s ease-in-out;
             }
-          
+
             input[type=text]:focus {
                 width: 30%;
-            }
-            button[type=submit]{
-                background-color: greenyellow;
-                border-radius: 10px;
             }
         </style>
     </head>
     <body>
     <center>
-        <form  method="Post">
-            <input type="text" name="id" placeholder="Id"><br/>
-            <input type="text" name="title" placeholder="Title"><br/>
-            <input type="text" name="details" placeholder="Details"><br/>
-            <input type="text" name="link" placeholder="Link"><br/>
-            <input type="text" name="status" placeholder="Status"><br/>
-            <input type="text" name="cat_id" placeholder="CategoryId"><br/>
+        <form method="Post">
+          
+            <input type="number" name="cat_id" placeholder="CategoryId"><br/>
             <button type="submit" name="submit" value="save">Save</button>
         </form>
     </center>

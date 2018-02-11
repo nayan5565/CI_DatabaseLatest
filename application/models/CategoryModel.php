@@ -10,43 +10,51 @@ class CategoryModel extends CI_Model {
         return $query->result();
     }
 
-    public function insert($params) {
-        $fields = array(
-            'title' => $params['title'],
-            'create_date' => date('Y-m-d H:i:s')
-//            'details' => $params['details'],
-//            'status' => $params['title'],
-//            'id' => $params['id']
-        );
-
-
-        $this->db->insert('items', $fields);
-    }
-    public function delete($params){
-        foreach ($params as $user_id){
-             $field = array(
-            'del_flag' => 1,
-          
-        );
-        $condition = array('id' =>$user_id);
-        $this->db->where($condition);
-        $this->db->update('items',$field);
+    public function delete($params) {
+        foreach ($params as $user_id) {
+            $field = array(
+                'del_flag' => 1,
+            );
+            $condition = array('id' => $user_id);
+            $this->db->where($condition);
+            $this->db->update('category', $field);
         }
     }
 
-    public function getUser($param){
-        $this->db->select($param['field']);//select fields from table
+    public function getUser($param) {
+        $this->db->select($param['field']); //select fields from table
         $this->db->order_by($param['order']);
-        $query=$this->db->get_where('items',$param['condition']);
+        $query = $this->db->get_where('category', $param['condition']);
         return $query->result_array();
     }
 
-    public function update($params) {
+    public function insert($params) {
+
+        date_default_timezone_set('Asia/Dhaka');
+        date('d m y h:i:s A');
         $fields = array(
             'title' => $params['title'],
-            'create_date' => date('Y-m-d H:i:s')
-//            'details' => $params['details'],
-//            'status' => $params['title'],
+            'details' => $params['details'],
+            'status' => $params['status'],
+            'link' => $params['link'],
+            'categoryId' => $params['categoryId'],
+            'create_date' => date('Y-m-d H:i:s'),
+            'id' => $params['id'],
+        );
+
+
+        $this->db->insert('category', $fields);
+    }
+
+    public function update($params) {
+        date_default_timezone_set('Asia/Dhaka');
+        $fields = array(
+            'title' => $params['title'],
+            'details' => $params['details'],
+            'status' => $params['status'],
+            'link' => $params['link'],
+            'categoryId' => $params['categoryId']
+
 //            'id' => $params['id']
         );
         $condition = array('id' => $params['id']);
@@ -58,20 +66,9 @@ class CategoryModel extends CI_Model {
             $this->db->where($condition);
             $this->db->update('items', $fields);
         } else {
-            $this->db->insert('items', $fields);
+            $fields['create_date'] = date('Y-m-d H:i:s');
+            $this->db->insert('category', $fields);
         }
     }
-
-    public function insert2($params) {
-        $fields = array(
-            'title' => $params['title'],
-            'details' => $params['details'],
-            'status' => $params['title']
-//            'id' => $params['id']
-        );
-        $this->db->insert('items', $fields);
-    }
-
- 
 
 }
