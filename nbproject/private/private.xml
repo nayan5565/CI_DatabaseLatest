@@ -3,17 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/ItemsView.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/CategoryView.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/models/ItemModel.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/DeleteTable.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Nayan.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/models/CategoryModel.php</file>
-=======
-            <file>file:/C:/xampp/htdocs/codeigniter/application/controllers/Nayan.php</file>
-            <file>file:/C:/xampp/htdocs/codeigniter/application/views/ItemsView.php</file>
-            <file>file:/C:/xampp/htdocs/codeigniter/application/models/ItemModel.php</file>
->>>>>>> 0e31b101f6a9e318a4d496061c7fcd412f9aa9a7
         </group>
     </open-files>
 </project-private>
