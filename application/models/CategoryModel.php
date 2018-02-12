@@ -9,6 +9,10 @@ class CategoryModel extends CI_Model {
         $query = $this->db->get('category');
         return $query->result();
     }
+    public function getImages(){
+        $query = $this->db->get('images');
+        return $query->result();
+    }
 
     public function delete($params) {
         foreach ($params as $user_id) {

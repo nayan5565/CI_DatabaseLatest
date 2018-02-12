@@ -17,11 +17,43 @@ class Api extends CI_Controller {
         date_default_timezone_set('Asia/Dhaka');
         echo date('Y m d h:i:s A');
 
+        $data['img'] = $this->CategoryModel->getImages();
+        $this->load->view('ItemsView', $data);
+//        $submit = NULL;
+//
+//        extract($_POST);
+//
+//        if ($submit) {
+//            redirect('api/upload');
+//        }
+
+        $this->load->view('FileUploadView', array('error' => ''));
+       
 //        $id = 3;
 ////         $this->ItemModel->test();
 //        $data['records'] = $this->ItemModel->jointTbl($id);
 //        $this->load->view('ItemsView', $data);
 //       
+    }
+
+    public function upload() {
+        $config['upload_path'] = "./image2/";
+
+
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = 1024;
+
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('featured_image')) {
+            $error = array('error' => $this->upload->display_errors());
+//            $this->session->set_flashdata('notification', array('type' => 'danger', 'message' => 'file too large to upload'));
+            redirect('api/index');
+//            $this->load->view('FileUploadView', $error);
+        } else {
+            $img_data = array('upload_data' => $this->upload->data());
+            $data['img2'] = base_url() . '/image2/' . $img_data['file_name'];
+            $this->load->view('ShowImageView', $data);
+        }
     }
 
     public function deleteForum() {
@@ -64,6 +96,17 @@ class Api extends CI_Controller {
 //         $this->ItemModel->test();
 
         $this->load->view('JoinView');
+    }
+
+    public function imageUpload() {
+        $destination = "images/" . $_FILES['image']['name'];
+        $temp_name = $_FILES['image']['tmp_name'];
+        move_uploaded_file($temp_name, $destination);
+        $data = array(
+            'path' => $destination
+        );
+        $this->db->insert('images', $data);
+        echo($temp_name);
     }
 
     public function inserForum() {
