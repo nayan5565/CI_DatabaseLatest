@@ -9,6 +9,7 @@
     <body>
         <h1>File has been uploaded</h1>
         <img src="<?php echo $img2; ?>" width="300" height="300">;
+        <h2>File path <?php echo $img2; ?></h2>
 
     </body>
 </html>

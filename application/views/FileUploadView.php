@@ -25,12 +25,12 @@
     <body>
     <center>
         <?php echo $error; ?>
-        <!--<form  method="Post" enctype="multipart/form-data">-->
-        <?php echo form_open_multipart('api/upload'); ?>
-        <input type="file" name="image">
-        <input type="submit" name="submit" value="image upload">
+        <form action="api/upload"  method="Post" enctype="multipart/form-data">
 
-        <!--            <button>Upload</button>-->
+            <input type="file" name="image">
+            <!--<input type="submit" name="submit" value="image upload">-->
+
+                        <button>Upload</button>
         </form>
     </center>
 </body>
