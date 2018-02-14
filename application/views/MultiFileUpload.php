@@ -44,9 +44,12 @@
             if($query->num_rows()>0){
                 foreach ($query->result() as $data){
                     echo '<li>';
-                    echo img(array(
+                    echo img(array(                     
                         'src'=>'image2/'.$data->path
+                            
+    
                     ));
+         
                     echo '</li>';
                 }
             }

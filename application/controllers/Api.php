@@ -1,7 +1,8 @@
 <?php
 
 class Api extends CI_Controller {
-    var $data=array();
+
+    var $data = array();
 
     public function __construct() {
         parent::__construct();
@@ -21,7 +22,35 @@ class Api extends CI_Controller {
 //        $data['img'] = $this->CategoryModel->getImages();
 //        $this->load->view('ItemsView', $data);
 //        echo '<pre>', print_r($_FILES), '</pre>';
+        $path = "./image2/";
+        $files = get_filenames($path);
+        foreach ($files as $f) {
+            $fileSize = filesize($path . $f) / 1024;
+            echo '</br>size of the file is : ' . $fileSize . ' kb';
+        }
+        $totalSize=$fileSize/1024;
+        echo '</br>total size of the file is : ' . $totalSize . ' mb';
+        $this->load->view('DownloadZipView');
+    }
 
+    public function downloadZip() {
+        $this->load->library('zip');
+        $path = "./image2/";
+        $files = get_filenames($path);
+
+        //trying get file size but not success
+        $fileSize = filesize($path . $files) / 1024;
+//
+        echo 'size of the file is : ' . $fileSize . ' kb';
+
+        foreach ($files as $f) {
+//            echo '<pre>', print_r($files), '</pre>';
+            $this->zip->read_file($path . $f, TRUE);
+        }
+        $this->zip->download('Download_all_file');
+    }
+
+    public function multiFileUpload() {
         // multiple file upload
         if ($this->input->post('file_submit') && !empty($_FILES['file_upload']['name'])) {
             $numb_of_files = sizeof($_FILES['file_upload']['tmp_name']);
@@ -33,8 +62,10 @@ class Api extends CI_Controller {
                 }
             }
 
-            $config['upload_path'] = FCPATH."image2/";
+            $config['upload_path'] = FCPATH . "image2/";
             $config['allowed_types'] = 'gif|jpg|png|jpeg|zip|mp4';
+//            $config['thumb.width'] = 50;      // Thumbnail width (pixels)
+//            $config['thumb.height'] = 50;
             $config['encrypt_name'] = TRUE;
 
             for ($i = 0; $i < $numb_of_files; $i++) {
@@ -43,32 +74,26 @@ class Api extends CI_Controller {
                 $_FILES['file_upload']['tmp_name'] = $files['tmp_name'][$i];
                 $_FILES['file_upload']['error'] = $files['error'][$i];
                 $_FILES['file_upload']['size'] = $files['size'][$i];
-                
+
                 $this->upload->initialize($config);
-                if ($this->upload->do_upload('file_upload')){
-                    $data= $this->upload->data();
+                if ($this->upload->do_upload('file_upload')) {
+                    $data = $this->upload->data();
                     chmod($data['full_path'], 0755);
-                    
-                    $insert[$i]['path']=$data['file_name'];
-                     $insert[$i]['size']=$data['file_size'];
+
+                    $insert[$i]['path'] = $data['file_name'];
+                    $insert[$i]['size'] = $data['file_size'];
 //                    echo '<pre>';
 //                    print_r($data);
 //                    echo '</pre>';
-                }         
+                }
             }
             $this->db->insert_batch('images', $insert);
         }
-        $this->data=array(
-            'query'=> $this->db->get('images')
+        $this->data = array(
+            'query' => $this->db->get('images')
         );
-        
+
         $this->load->view('MultiFileUpload', $this->data);
-//        $this->load->view('FileUploadView', array('error' => ''));
-//        $id = 3;
-////         $this->ItemModel->test();
-//        $data['records'] = $this->ItemModel->jointTbl($id);
-//        $this->load->view('ItemsView', $data);
-//       
     }
 
     public function upload() {
@@ -98,6 +123,8 @@ class Api extends CI_Controller {
             'size' => $file_size
         );
         $this->db->insert('images', $data2);
+
+        $this->load->view('FileUploadView', array('error' => ''));
     }
 
     public function deleteForum() {
