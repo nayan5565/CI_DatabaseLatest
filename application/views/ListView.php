@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-<body>
+    <body>
 
-<h2>An Items List</h2>
+        <h2>An Items List</h2>
 
-<ol>
-     <?php
+        <ol>
+            <?php
             foreach ($records as $rec) {
-                echo '<li>' . $rec->status . ' </li>';
-               
-//                echo "<br/>" . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status;
+//                echo '<li>' . $rec->status . ' </li>';
+
+                echo '<li>' . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status . ' </li>';
             }
             ?>
-</ol>  
+        </ol>  
 
-</body>
+    </body>
 </html>
 

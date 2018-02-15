@@ -32,7 +32,7 @@
                 . '<td>' . $rec->status . ' </td>'
                 . '<td>' . $rec->title . ' </td>'
                 . '<td>' . $rec->details . ' </td>'
-                . '<td>' . $rec->title . ' </td>'
+                . '<td>' . $rec->categoryTitle . ' </td>'
                 . '</tr>';
 //                echo "<br/>" . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status;
             }
