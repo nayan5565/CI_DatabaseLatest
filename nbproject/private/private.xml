@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/codeigniter/application/views/InsertView.php</file>
-            <file>file:/C:/xampp/htdocs/codeigniter/application/models/CategoryModel.php</file>
-            <file>file:/C:/xampp/htdocs/codeigniter/application/controllers/Api.php</file>
+            <file>file:/C:/xampp/htdocs/codeigniter/application/views/LoginView.php</file>
+            <file>file:/C:/xampp/htdocs/codeigniter/application/controllers/Login.php</file>
+            <file>file:/C:/xampp/htdocs/codeigniter/application/models/LoginModel.php</file>
+            <file>file:/C:/xampp/htdocs/codeigniter/application/config/config.php</file>
         </group>
     </open-files>
 </project-private>
