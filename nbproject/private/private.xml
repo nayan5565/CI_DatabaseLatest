@@ -5,9 +5,11 @@
         <group>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Api.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/views/MultiFileUpload.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Email.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/views/DownloadZipView.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/models/CategoryModel.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/views/ShowImageView.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/config/email.php</file>
         </group>
     </open-files>
 </project-private>
