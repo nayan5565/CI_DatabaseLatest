@@ -45,8 +45,9 @@
                 foreach ($query->result() as $data){
                     echo '<li>';
                     echo img(array(                     
-                        'src'=>'image2/'.$data->path
-                            
+                        'src'=>'image2/'.$data->path,
+                         'width'=>'120px',
+                        'height'=>'120px'
     
                     ));
          

@@ -9,14 +9,16 @@ class Email extends CI_Controller {
     }
 
     function index() {
-//        $config=array(
-//            'protocol'=>'smtp',
-//            'smtp_host'=>'ssl://smtp.googlemail.com',
-//            'smtp_port'=>465,
-//            'smtp_user'=>'nayan5565@gmail.com',
-//            'smtp_pass'=>'1%Nayan%3'
-//        );
         $this->load->library('email');
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'nayan5565@gmail.com',
+            'smtp_pass' => '1%Nayan%3'
+        );
+        $this->email->initialize($config);
+
         $this->email->set_newline("\r\n");
 
         $this->email->from('nayan5565@gmail.com', 'nayan5565');
@@ -36,25 +38,39 @@ class Email extends CI_Controller {
         }
     }
 
-    public function send($value = '') {
+    public function send() {
         $this->load->library('email');
 
-        $config['protocol'] = 'sendmail';
-        $config['mailpath'] = '/usr/sbin/sendmail';
-        $config['charset'] = 'utf-8';
-        $config['wordwrap'] = TRUE;
-        $config['smtp_port'] = "25";
-//
-        $this->email->initialize($config);
+//        $config['protocol'] = 'sendmail';
+//        $config['mailpath'] = '/usr/sbin/sendmail';
+//        $config['charset'] = 'utf-8';
+//        $config['wordwrap'] = TRUE;
+//        $config['smtp_port'] = "25";
+////
+//        $this->email->initialize($config);
 //        $config = array(
 //            'mailtype' => "html"
 //        );
-//        $this->email->initialize($config);
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.gmail.com';
+        $config['smtp_port'] = '587';
+        $config['smtp_user'] = 'darushsalam5565';
+        $config['smtp_pass'] = 'Nayan5565';
+        $config['smtp_crypto'] = 'tls';
+        $config['newline'] = "\r\n";
+        $config['crlf'] = "\r\n";
+//$config['mailtype'] = "html";       
+        $this->email->initialize($config);
 
-        $this->email->from('nayan5565@gmail.com', 'nayan5565');
-        $this->email->to('rmiraz32@gmail.com');
+        $this->email->from('darushsalam5565.com');
+        $this->email->to('kazinayem2011@gmail.com');
         $this->email->subject('hello how r u?');
         $this->email->message('hjfskhkg hsgfvdsjbfdsh jfhdsfkjjdsfjh sbfdshgdksnkgjhdi');
+        $path = $this->config->item('server_root');
+        $file = $path . '/Codeigniter/image2.zip';
+        echo $file;
+        $this->email->attach($file);
+
         if ($this->email->send()) {
             echo 'mail sent';
         } else {
@@ -83,6 +99,17 @@ class Email extends CI_Controller {
         $this->email->from("nayan5565@gmail.com");
         $this->email->to("rmiraz32@gmail.com");
         $this->email->send();
+    }
+
+    public function send3() {
+        $to = 'nobody@example.com';
+        $subject = 'the subject';
+        $message = 'hello';
+        $headers = 'From: nayan5565@gmail.com' . "\r\n" .
+                'Reply-To: nayan5565@gmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
     }
 
 }
