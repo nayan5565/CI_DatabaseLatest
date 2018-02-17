@@ -1,5 +1,7 @@
 <?php
 
+require(APPPATH . 'libraries\MultipartCompress.php');
+
 class Api extends CI_Controller {
 
     var $data = array();
@@ -26,44 +28,61 @@ class Api extends CI_Controller {
         $files = get_filenames($path);
         foreach ($files as $f) {
             $fileSize = filesize($path . $f);
-            echo '</br>size of the file is : ' . $fileSize . ' byte';
+            echo '</br>size of the file is : ' . $fileSize / 1024 . ' kb';
         }
 //        $totalSize = $fileSize;
-        if ($fileSize >= 1073741824) {
-            $totalSize = number_format($fileSize / 1073741824, 2) . ' GB';
-            echo '</br>total size of the file is : ' . $totalSize;
-        } elseif ($fileSize >= 1048576) {
-            $totalSize = number_format($fileSize / 1048576, 2) . ' MB';
-            echo '</br>total size of the file is : ' . $totalSize;
-        } elseif ($fileSize >= 1024) {
-            $totalSize = number_format($fileSize / 1024, 2) . ' KB';
-            echo '</br>total size of the file is : ' . $totalSize;
-        }
+//        if ($fileSize >= 1073741824) {
+//            $totalSize = number_format($fileSize / 1073741824, 2) . ' GB';
+//            echo '</br>total size of the file is : ' . $totalSize;
+//        } elseif ($fileSize >= 1048576) {
+//            $totalSize = number_format($fileSize / 1048576, 2) . ' MB';
+//            echo '</br>total size of the file is : ' . $totalSize;
+//        } elseif ($fileSize >= 1024) {
+//            $totalSize = number_format($fileSize / 1024, 2) . ' KB';
+//            echo '</br>total size of the file is : ' . $totalSize;
+//        }
+        $total = $fileSize / 1024;
+
+
+        echo '</br>total size of the file is : ' . $total;
 
 
 
-
-
-
-        echo '</br>total size of the file is : ' . $fileSize / 1024, 2;
         $this->load->view('DownloadZipView');
     }
 
     public function downloadZip() {
+
         $this->load->library('zip');
+//        $this->load->library('MultipartCompress');
         $path = "./image2/";
         $files = get_filenames($path);
 
         //trying get file size but not success
-        $fileSize = filesize($path . $files) / 1024;
-//
-        echo 'size of the file is : ' . $fileSize . ' kb';
+
 
         foreach ($files as $f) {
 //            echo '<pre>', print_r($files), '</pre>';
             $this->zip->read_file($path . $f, TRUE);
+            $fileSize = filesize($path . $f) / 1024;
+//
+            echo ' file name : ' . $fileSize . '</br>';
         }
-        $this->zip->download('Download_all_file');
+        $zip_file = $this->zip->archive("./image3/Download_all_file.zip");
+
+        $zip_split = new MultipartCompress();
+        $zip_split->split($zip_file, 2);
+
+//        $this->zip->download('Download_all_file');
+    }
+
+    public function multiZip() {
+
+        $i = "./image2/";
+        $o = "./image3/Download_all_file.zip";
+        $s = 100 * 1024 * 1024; //10MB
+        echo $zip = MultipartCompress::zip($i, $o, $s);
+        $p = $zip;
     }
 
     public function multiFileUpload() {
