@@ -16,7 +16,13 @@ class Api extends CI_Controller {
 
 //        $this->load->view('CategoryView', $data);
     }
+function formatBytes($size, $precision = 2)
+{
+    $base = log($size, 1024);
+    $suffixes = array('', 'K', 'M', 'G', 'T');   
 
+    return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
+}
     public function index() {
         date_default_timezone_set('Asia/Dhaka');
         echo date('Y m d h:i:s A');
@@ -26,10 +32,17 @@ class Api extends CI_Controller {
 //        echo '<pre>', print_r($_FILES), '</pre>';
         $path = "./image2/";
         $files = get_filenames($path);
+       
+        
         foreach ($files as $f) {
             $fileSize = filesize($path . $f);
             echo '</br>size of the file is : ' . $fileSize / 1024 . ' kb';
         }
+        //find out how many item have of folder
+        echo '</br> size is'. count($files);
+;
+//         $size=$this->formatBytes($fileSize,0);
+//         echo '</br>'. $size;
 //        $totalSize = $fileSize;
 //        if ($fileSize >= 1073741824) {
 //            $totalSize = number_format($fileSize / 1073741824, 2) . ' GB';
@@ -41,10 +54,10 @@ class Api extends CI_Controller {
 //            $totalSize = number_format($fileSize / 1024, 2) . ' KB';
 //            echo '</br>total size of the file is : ' . $totalSize;
 //        }
-        $total = $fileSize / 1024;
-
-
-        echo '</br>total size of the file is : ' . $total;
+//        $total = $fileSize / 1024;
+//
+//
+//        echo '</br>total size of the file is : ' . $total;
 
 
 
@@ -58,7 +71,7 @@ class Api extends CI_Controller {
         $path = "./image2/";
         $files = get_filenames($path);
 
-        //trying get file size but not success
+ 
 
 
         foreach ($files as $f) {
@@ -70,21 +83,10 @@ class Api extends CI_Controller {
         }
         $zip_file = $this->zip->archive("./image3/Download_all_file.zip");
 
-        $zip_split = new MultipartCompress();
-        $zip_split->split($zip_file, 2);
+        // download zip file
 
 //        $this->zip->download('Download_all_file');
     }
-
-    public function multiZip() {
-
-        $i = "./image2/";
-        $o = "./image3/Download_all_file.zip";
-        $s = 100 * 1024 * 1024; //10MB
-        echo $zip = MultipartCompress::zip($i, $o, $s);
-        $p = $zip;
-    }
-
     public function multiFileUpload() {
         // multiple file upload
         if ($this->input->post('file_submit') && !empty($_FILES['file_upload']['name'])) {

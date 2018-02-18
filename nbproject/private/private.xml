@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/LoginView.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Login.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/config/autoload.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/models/LoginModel.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Api.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Email.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/ZipSplit.php</file>
         </group>
     </open-files>
 </project-private>
