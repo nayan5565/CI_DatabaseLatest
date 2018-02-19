@@ -8,7 +8,26 @@ class Login extends CI_Controller {
     }
 
     function index() {
-        echo '<center><a href="' . base_url() . 'login/log_out">click</a></center> ';
+        print_r($this->LoginModel->getData());
+        echo '<center><a href="' . base_url() . 'login/log_out">logout</a></center> ';
+    }
+
+    public function home() {
+        $data['colorh'] = '#ff0000';
+        $data['title'] = 'Welcome to Home';
+        $this->load->view('NavView', $data);
+    }
+
+    public function news() {
+        $data['title'] = 'Welcome to News';
+        $data['colorn'] = '#ff0000';
+        $this->load->view('NavView', $data);
+    }
+
+    public function contacts() {
+        $data['title'] = 'Welcome to Contacts';
+        $data['colorc'] = '#ff0000';
+        $this->load->view('NavView', $data);
     }
 
     public function sign_up() {
@@ -28,35 +47,39 @@ class Login extends CI_Controller {
 
             if ($this->LoginModel->canLogin($username, $password)) {
                 $session_data = array(
-                    'username' => $username,
-                    'password' => $password
+                    'username' => $username
+//                    'password' => $password
                 );
+//                echo 'username is '.$username;
                 $this->session->set_userdata($session_data);
-                $this->session->set_userdata('username', 'nayan');
-                echo 'success';
-                $this->session->set_flashdata('error', 'invalid username or pass');
-                redirect(base_url() . 'login/enter');
+//                $this->session->set_userdata('username', 'nayan');
+//                echo 'success';
+                $this->enter();
+//                redirect(base_url() . 'login/enter');
             } else {
                 echo 'invalid username or pass';
                 $this->session->set_flashdata('error', 'invalid username or pass');
-                redirect(base_url() . 'login/sign_up');
+                $this->sign_up();
             }
         } else {
             echo 'filed is empty';
-            $this->session->set_flashdata('error', 'invalid username or pass');
+            $this->session->set_flashdata('error', 'field is required');
             $this->sign_up();
         }
     }
 
     public function enter() {
         if ($this->session->userdata('username') != '') {
-            echo '<h2>Welcome' . $this->session->userdata('username') . '</h2>';
-            echo '<a href="' . base_url() . 'login/log_out"></a>';
+
+            $data['title'] = 'Welcome to Dashboard';
+            $this->load->view('NavView', $data);
+//            echo '<h2>Welcome to Dashboard ' . $this->session->userdata('username') . '</h2>';
+//            echo '<a href="' . base_url() . 'login/log_out">logout_enter</a>';
         } else {
 
-            print_r($this->session->userdata('username'));
-         
-            echo '<a href="' . base_url() . 'login/log_out"></a>';
+//            print_r($this->session->userdata('username'));
+            echo '</br>enter username  = ' . $this->session->userdata('username') . '</br>';
+            echo '<a href="' . base_url() . 'login/log_out">logout</a>';
         }
     }
 

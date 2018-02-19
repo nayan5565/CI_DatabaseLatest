@@ -28,7 +28,7 @@ class CategoryModel extends CI_Model {
     public function getUser($param) {
         $this->db->select($param['field']); //select fields from table
         $this->db->order_by($param['order']);
-        $query = $this->db->get_where('category', $param['condition']);
+        $query = $this->db->get_where('category');
         return $query->result_array();
     }
 
