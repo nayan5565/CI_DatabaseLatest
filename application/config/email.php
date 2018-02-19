@@ -2,16 +2,16 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['protocol'] = 'smtp';
-$config['smtp_host'] = 'ssl://smtp.googlemail.com';
-$config['smtp_port'] = '465';
-$config['smtp_user'] = 'developernayan5565';
-$config['smtp_pass'] = '01913555965';
-//        $config['smtp_crypto'] = 'tls';
-$config['newline'] = "\r\n";
-$config['crlf'] = "\r\n";
-$config['ExecTimeLimit'] = 6000;
-$config['mailtype'] = "html";
+//$config['protocol'] = 'smtp';
+//$config['smtp_host'] = 'ssl://smtp.googlemail.com';
+//$config['smtp_port'] = '465';
+//$config['smtp_user'] = 'developernayan5565';
+//$config['smtp_pass'] = '01913555965';
+////        $config['smtp_crypto'] = 'tls';
+//$config['newline'] = "\r\n";
+//$config['crlf'] = "\r\n";
+//$config['ExecTimeLimit'] = 6000;
+//$config['mailtype'] = "html";
 
 //$config['protocol'] = 'smtp';
 //$config['smtp_host'] = 'smtp.gmail.com';

@@ -46,6 +46,19 @@ class Email extends CI_Controller {
         //find out how many item have of folder
 
         $this->load->library('email');
+
+        $this->email->initialize(array(
+            'mailtype' => 'html',
+            'protocol' => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'developernayan5565',
+            'smtp_pass' => '01913555965',
+            'smtp_crypto' => 'tls',
+            'smtp_port' => 587,
+            'charset' => 'iso-8859-1',
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ));
 //        for ($i = 0; $i < count($files); $i++) {
 //
 //            $this->email->clear();
@@ -71,8 +84,8 @@ class Email extends CI_Controller {
 //        echo 'test =' . $files[3];
         foreach ($files as $f) {
 
-
-            $this->email->from('darushsalam5565@gmail.com', 'dev');
+            $this->email->clear(TRUE);
+            $this->email->from('developernayan5565@gmail.com', 'dev');
             $this->email->to('nayan5565@gmail.com');
             $this->email->subject('file');
             $this->email->message('i have attach zip file another time ' . $f);
@@ -88,7 +101,7 @@ class Email extends CI_Controller {
             } else {
                 show_error($this->email->print_debugger());
             }
-            $this->email->clear();
+//            $this->email->clear();
 //            $this->send($f);
 //            $int++;
 //            $fileSize = filesize($path . $f) / 1024;
