@@ -17,6 +17,23 @@ class Api extends CI_Controller {
 //        $this->load->view('CategoryView', $data);
     }
 
+    public function createFolder() {
+        $email = 'nayan5565@gmail.com';
+        $domain = strstr($email, '@');
+        echo 'email one '. $domain.'</br>'; // prints @example.com
+
+        $user = strstr($email, '@', true); // As of PHP 5.3.0
+        echo 'email two '. $user.'</br>';
+        $targetfolder = $user;
+        if (!file_exists($targetfolder)) {
+            if (mkdir($targetfolder)) {
+                echo "Created target folder $targetfolder";
+            }
+        } else {
+            echo "Already Created target folder $targetfolder";
+        }
+    }
+
     function formatBytes($size, $precision = 2) {
         $base = log($size, 1024);
         $suffixes = array('', 'K', 'M', 'G', 'T');
@@ -25,6 +42,12 @@ class Api extends CI_Controller {
     }
 
     public function index() {
+        $user = \Drupal::currentUser();
+        $user_email = $user->getEmail();
+
+        echo 'Current script email: ' . $user_email . '</br>';
+
+        echo 'Current script owner: ' . get_current_user() . '</br>';
         date_default_timezone_set('Asia/Dhaka');
         echo date('Y m d h:i:s A');
 //
@@ -134,6 +157,36 @@ class Api extends CI_Controller {
         $this->load->view('MultiFileUpload', $this->data);
     }
 
+    public function dropdown() {
+        if (isset($_POST['formSubmit'])) {
+
+            $aCountries = $_POST['formCountries'];
+
+
+
+            if (!isset($aCountries)) {
+
+                echo("<p>You didn't select any countries!</p>\n");
+            } else {
+
+                $nCountries = count($aCountries);
+
+
+
+                echo("<p>You selected $nCountries countries: ");
+
+                for ($i = 0; $i < $nCountries; $i++) {
+
+                    echo($aCountries[$i] . " ");
+                }
+
+                echo("</p>");
+            }
+        }
+
+        $this->load->view('DropdownView');
+    }
+
     public function upload() {
         $config['upload_path'] = "./image2/";
 
@@ -236,16 +289,16 @@ class Api extends CI_Controller {
         $params['details'] = $details;
         $params['status'] = $status;
         $params['link'] = $link;
-        if($cat=='bangla'){
+        if ($cat == 'bangla') {
             $params['categoryId'] = 1;
         }
-         if($cat=='ongko'){
+        if ($cat == 'ongko') {
             $params['categoryId'] = 4;
         }
-         if($cat=='english'){
+        if ($cat == 'english') {
             $params['categoryId'] = 2;
         }
-         if($cat=='math'){
+        if ($cat == 'math') {
             $params['categoryId'] = 3;
         }
 //        $params['categoryId'] = $cat_id;

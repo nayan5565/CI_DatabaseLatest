@@ -73,16 +73,25 @@
     <body>
 
     <center>
-        <div class="dropdown">
-            <button name="getCatId" class="dropbtn">Select category</button>
-            <div class="dropdown-content">
-                <?php foreach ($results as $rec) { ?>
-                <a id="<?php  echo $rec->id; ?>" href="#<?php echo $rec->id; ?>"><?php echo $rec->title; ?></a>
-                    <!--                <a href="#2">Link 2</a>
-                                    <a href="#3">Link 3</a>-->
+        <!--        <div class="dropdown">
+                    <button name="getCatId" class="dropbtn">Select category</button>
+                    <div class="dropdown-content">
+        <?php foreach ($results as $rec) { ?>
+                                    <a id="<?php echo $rec->id; ?>" href="#<?php echo $rec->id; ?>"><?php echo $rec->title; ?></a>
+                                                        <a href="#2">Link 2</a>
+                                                        <a href="#3">Link 3</a>
+        <?php } ?>
+                    </div>
+                </div>-->
+
+        <select>
+            <?php foreach ($results as $rec) { ?>
+            <option value="<?php echo $rec->title; ?>"><?php echo $rec->title; ?></option>
                 <?php } ?>
-            </div>
-        </div>
+            <!--        <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>-->
+        </select>
         <form  method="Post">
 
             <!--<input type="text" name="id" placeholder="Id"><br/>-->
