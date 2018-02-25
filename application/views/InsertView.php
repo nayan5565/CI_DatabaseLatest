@@ -74,7 +74,7 @@
 
     <center>
         <div class="dropdown">
-            <button class="dropbtn">Select category</button>
+            <button name="getCatId" class="dropbtn">Select category</button>
             <div class="dropdown-content">
                 <?php foreach ($results as $rec) { ?>
                 <a id="<?php  echo $rec->id; ?>" href="#<?php echo $rec->id; ?>"><?php echo $rec->title; ?></a>
@@ -85,12 +85,13 @@
         </div>
         <form  method="Post">
 
-            <input type="text" name="id" placeholder="Id"><br/>
+            <!--<input type="text" name="id" placeholder="Id"><br/>-->
             <input type="text" name="title" placeholder="Title"><br/>
             <input type="text" name="details" placeholder="Details"><br/>
             <input type="text" name="link" placeholder="Link"><br/>
-            <input type="text" name="status" placeholder="Status"><br/>
-            <input type="text" name="cat_id" placeholder="CategoryId"><br/>
+            <input type="text" name="cat" placeholder="Category"><br/>
+            <input value="" type="text" name="status" placeholder="Status"><br/>
+            <!--<input value="<?php echo $getCatId; ?>" type="text" name="cat_id" placeholder="CategoryId"><br/>-->
             <button type="submit" name="submit" value="save">Save</button>
         </form>
 

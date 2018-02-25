@@ -220,11 +220,13 @@ class Api extends CI_Controller {
 
     public function inserForum() {
 //insert/ update code
+        $getCatId = NULL;
         $title = NULL;
         $details = NULL;
         $status = NULL;
         $link = NULL;
         $cat_id = NULL;
+        $cat = NULL;
         $id = NULL;
         $submit = NULL;
 
@@ -234,15 +236,28 @@ class Api extends CI_Controller {
         $params['details'] = $details;
         $params['status'] = $status;
         $params['link'] = $link;
-        $params['categoryId'] = $cat_id;
+        if($cat=='bangla'){
+            $params['categoryId'] = 1;
+        }
+         if($cat=='ongko'){
+            $params['categoryId'] = 4;
+        }
+         if($cat=='english'){
+            $params['categoryId'] = 2;
+        }
+         if($cat=='math'){
+            $params['categoryId'] = 3;
+        }
+//        $params['categoryId'] = $cat_id;
 
-        
+
 
         if (isset($submit)) {
             $this->ItemModel->insert($params);
         }
+        $data['getCatId'] = $getCatId;
         $data['results'] = $this->CategoryModel->getData();
-        $this->load->view('InsertView',$data);
+        $this->load->view('InsertView', $data);
     }
 
     public function updateForum() {
