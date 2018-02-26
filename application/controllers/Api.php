@@ -20,10 +20,10 @@ class Api extends CI_Controller {
     public function createFolder() {
         $email = 'nayan5565@gmail.com';
         $domain = strstr($email, '@');
-        echo 'email one '. $domain.'</br>'; // prints @example.com
+        echo 'email one ' . $domain . '</br>'; // prints @example.com
 
         $user = strstr($email, '@', true); // As of PHP 5.3.0
-        echo 'email two '. $user.'</br>';
+        echo 'email two ' . $user . '</br>';
         $targetfolder = $user;
         if (!file_exists($targetfolder)) {
             if (mkdir($targetfolder)) {
@@ -42,10 +42,6 @@ class Api extends CI_Controller {
     }
 
     public function index() {
-        $user = \Drupal::currentUser();
-        $user_email = $user->getEmail();
-
-        echo 'Current script email: ' . $user_email . '</br>';
 
         echo 'Current script owner: ' . get_current_user() . '</br>';
         date_default_timezone_set('Asia/Dhaka');
@@ -158,30 +154,45 @@ class Api extends CI_Controller {
     }
 
     public function dropdown() {
+//        if($_POST){
+//            $formCountries = $this->input->post('formCountries');
+//            echo $formCountries;
+//        }
         if (isset($_POST['formSubmit'])) {
-
+               $formCountries = $this->input->post('formCountries');
+               echo $formCountries;
+               
+               
             $aCountries = $_POST['formCountries'];
+            echo '<br>';
+            echo $aCountries;
 
-
-
-            if (!isset($aCountries)) {
-
-                echo("<p>You didn't select any countries!</p>\n");
+            if ($aCountries == 'NULL') {
+                $error_msg['formCountries'] = 'Country is required';
+//                $this->load->view('DropdownView',$error_msg);
             } else {
-
-                $nCountries = count($aCountries);
-
-
-
-                echo("<p>You selected $nCountries countries: ");
-
-                for ($i = 0; $i < $nCountries; $i++) {
-
-                    echo($aCountries[$i] . " ");
-                }
-
-                echo("</p>");
+                $error_msg['formCountries'] = 'You selected' . $aCountries . 'countries: ';
+//                $this->load->view('DropdownView',$error_msg);
             }
+//            if (!isset($aCountries)) {
+//
+//                echo("<p>You didn't select any countries!</p>\n");
+//            } else {
+//                echo $aCountries;
+//
+//                $nCountries = count($aCountries);
+//
+//
+//
+//                echo("<p>You selected $nCountries countries: ");
+//
+//                for ($i = 0; $i < $nCountries; $i++) {
+//
+//                    echo($aCountries[$i] . " ");
+//                }
+//
+//                echo("</p>");
+//            }
         }
 
         $this->load->view('DropdownView');

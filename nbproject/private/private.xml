@@ -5,7 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Api.php</file>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/views/InsertView.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/models/CategoryModel.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/ZipSplit.php</file>
         </group>
     </open-files>
 </project-private>

@@ -6,7 +6,7 @@
 
         <style> 
             .select {
-                 width: 130px;
+                width: 130px;
                 background-color: #4CAF50;
                 color: white;
                 padding: 16px;
@@ -15,7 +15,7 @@
                 cursor: pointer;
             }
 
-           
+
 
             input[type=option] {
                 width: 130px;
@@ -25,11 +25,11 @@
                 border-radius: 4px;
                 font-size: 16px;
                 background-color: white;
-               
+
                 background-position: 10px 10px; 
                 background-repeat: no-repeat;
                 padding: 12px 20px 12px 40px;
-               
+
             }
 
             input[type=text]:focus {
@@ -39,29 +39,49 @@
                 background-color: greenyellow;
                 border-radius: 10px;
             }
+            #bd{
+                width: 130px;
+            }
         </style>
     </head>
     <body>
 
+
     <center>
+
+        <!--<form>-->
         <label for='formCountries[]'>Select the countries that you have visited:</label><br>
+        <form action="<?php echo site_url("Api/dropdown") ?>" method="post">
+            <select class="bd"  name="formCountries">
+                <option value="NULL">Select countries</option>
+                <option value="US">United States</option>
 
-        <select  name="formCountries[]">
+                <option value="UK">United Kingdom</option>
 
-            <option value="US">United States</option>
+                <option value="France">France</option>
 
-            <option value="UK">United Kingdom</option>
+                <option value="Mexico">Mexico</option>
 
-            <option value="France">France</option>
+                <option value="Russia">Russia</option>
 
-            <option value="Mexico">Mexico</option>
+                <option value="Japan">Japan</option>
 
-            <option value="Russia">Russia</option>
+            </select>
+            <button type="submit" name="formSubmit">submit</button>
+        </form>
+        
 
-            <option value="Japan">Japan</option>
+        <h1> 
+            <?php
+            if (isset($error_msg['formCountries'])) {
+                echo $formCountries;
+                echo $error_msg['formCountries'];
+            }
+            ?> 
+        </h1>
+        
 
-        </select>
-
+        <!--</form>-->
 
 
     </center>
