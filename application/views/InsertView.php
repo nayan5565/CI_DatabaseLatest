@@ -5,48 +5,8 @@
         <title>Test insert/update</title>
 
         <style> 
-            .dropbtn {
-                background-color: #4CAF50;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-            }
-
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
-
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-            .dropdown-content a:hover {background-color: #f1f1f1}
-
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            .dropdown:hover .dropbtn {
-                background-color: #3e8e41;
-            }
-
             input[type=text] {
-                width: 130px;
+                width: 40%;
                 box-sizing: border-box;
                 border: 2px solid #ccc;
                 margin: 8px 0;
@@ -57,14 +17,15 @@
                 background-position: 10px 10px; 
                 background-repeat: no-repeat;
                 padding: 12px 20px 12px 40px;
-                -webkit-transition: width 0.4s ease-in-out;
-                transition: width 0.4s ease-in-out;
+                /*                -webkit-transition: width 0.4s ease-in-out;
+                                transition: width 0.4s ease-in-out;*/
             }
 
             input[type=text]:focus {
                 width: 30%;
             }
             button[type=submit]{
+                margin: 8px 0;
                 background-color: greenyellow;
                 border-radius: 10px;
             }
@@ -73,34 +34,22 @@
     <body>
 
     <center>
-        <!--        <div class="dropdown">
-                    <button name="getCatId" class="dropbtn">Select category</button>
-                    <div class="dropdown-content">
-        <?php foreach ($results as $rec) { ?>
-                                    <a id="<?php echo $rec->id; ?>" href="#<?php echo $rec->id; ?>"><?php echo $rec->title; ?></a>
-                                                        <a href="#2">Link 2</a>
-                                                        <a href="#3">Link 3</a>
-        <?php } ?>
-                    </div>
-                </div>-->
 
-        <select>
-            <?php foreach ($results as $rec) { ?>
-            <option value="<?php echo $rec->title; ?>"><?php echo $rec->title; ?></option>
-                <?php } ?>
-            <!--        <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>-->
-        </select>
         <form  method="Post">
 
-            <!--<input type="text" name="id" placeholder="Id"><br/>-->
+
+ <!--<input type="text" name="id" placeholder="Id"><br/>-->
             <input type="text" name="title" placeholder="Title"><br/>
             <input type="text" name="details" placeholder="Details"><br/>
             <input type="text" name="link" placeholder="Link"><br/>
-            <input type="text" name="cat" placeholder="Category"><br/>
+            <!--<input type="text" name="cat" placeholder="Category"><br/>-->
             <input value="" type="text" name="status" placeholder="Status"><br/>
-            <!--<input value="<?php echo $getCatId; ?>" type="text" name="cat_id" placeholder="CategoryId"><br/>-->
+            <select class="bd"  name="formCountries">
+                <?php foreach ($results as $rec) { ?>
+                    <option value="<?php echo $rec->id; ?>"><?php echo $rec->title; ?></option>
+                <?php } ?>    
+            </select>
+            </br>
             <button type="submit" name="submit" value="save">Save</button>
         </form>
 

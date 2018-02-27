@@ -82,13 +82,14 @@ class Email extends CI_Controller {
 //            echo '</br> file name : ' . $files[$i] . '</br>';
 //        }
 //        echo 'test =' . $files[3];
+        $this->email->clear(TRUE);
+        $this->email->from('developernayan5565@gmail.com', 'dev');
+        $this->email->to('nayeem2011@gmail.com');
+        $this->email->subject('file');
         foreach ($files as $f) {
 
-            $this->email->clear(TRUE);
-            $this->email->from('developernayan5565@gmail.com', 'dev');
-            $this->email->to('nayan5565@gmail.com');
-            $this->email->subject('file');
-            $this->email->message('i have attach zip file another time ' . $f);
+
+            $this->email->message('i have attach ' . $f);
             //server_root use for file send by mail
             $path = $this->config->item('server_root');
 

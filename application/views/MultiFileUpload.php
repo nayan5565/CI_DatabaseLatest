@@ -38,23 +38,28 @@
 
         echo form_close();
         ?>
-        
+
         <ul>
-            <?php 
-            if($query->num_rows()>0){
-                foreach ($query->result() as $data){
+            <?php
+            $email = 'nayan5565@gmail.com';
+            $domain = strstr($email, '@');
+          
+
+            $user = strstr($email, '@', true); // As of PHP 5.3.0
+           
+            $targetfolder = $user;
+            if ($query->num_rows() > 0) {
+                foreach ($query->result() as $data) {
                     echo '<li>';
-                    echo img(array(                     
-                        'src'=>'image2/'.$data->path,
-                         'width'=>'120px',
-                        'height'=>'120px'
-    
+                    echo img(array(
+                        'src' => $targetfolder.'/' . $data->path,
+                        'width' => '120px',
+                        'height' => '120px'
                     ));
-         
+
                     echo '</li>';
                 }
-            }
-            else{
+            } else {
                 echo '<li>file still empty</li>';
             }
             ?>

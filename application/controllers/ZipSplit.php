@@ -65,7 +65,7 @@ class ZipSplit extends CI_Controller {
 
 // File size in Mb per piece/split.
 // For a 200Mb file if piecesize=10 it will create twenty 10Mb files
-        $piecesize = 3; // splitted file size in MB
+        $piecesize = 1; // splitted file size in MB
 // ---------------------------
 // Do NOT edit this section
 // ---------------------------

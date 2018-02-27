@@ -52,24 +52,15 @@
         <!--<form>-->
         <label for='formCountries[]'>Select the countries that you have visited:</label><br>
         <form action="<?php echo site_url("Api/dropdown") ?>" method="post">
+
             <select class="bd"  name="formCountries">
-                <option value="NULL">Select countries</option>
-                <option value="US">United States</option>
-
-                <option value="UK">United Kingdom</option>
-
-                <option value="France">France</option>
-
-                <option value="Mexico">Mexico</option>
-
-                <option value="Russia">Russia</option>
-
-                <option value="Japan">Japan</option>
-
+                <?php foreach ($results as $rec) { ?>
+                    <option value="<?php echo $rec->id; ?>"><?php echo $rec->title; ?></option>
+                <?php } ?>    
             </select>
             <button type="submit" name="formSubmit">submit</button>
         </form>
-        
+
 
         <h1> 
             <?php
@@ -79,7 +70,7 @@
             }
             ?> 
         </h1>
-        
+
 
         <!--</form>-->
 

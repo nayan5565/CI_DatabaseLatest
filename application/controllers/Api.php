@@ -42,7 +42,11 @@ class Api extends CI_Controller {
     }
 
     public function index() {
+        $email = 'nayan5565@gmail.com';
+        $domain = strstr($email, '@');
 
+
+        $user = strstr($email, '@', true); // As of PHP 5.3.0
         echo 'Current script owner: ' . get_current_user() . '</br>';
         date_default_timezone_set('Asia/Dhaka');
         echo date('Y m d h:i:s A');
@@ -50,7 +54,7 @@ class Api extends CI_Controller {
 //        $data['img'] = $this->CategoryModel->getImages();
 //        $this->load->view('ItemsView', $data);
 //        echo '<pre>', print_r($_FILES), '</pre>';
-        $path = "./image2/";
+        $path = "./" . $user . "/";
         $files = get_filenames($path);
 
 
@@ -85,10 +89,14 @@ class Api extends CI_Controller {
     }
 
     public function downloadZip() {
+        $email = 'nayan5565@gmail.com';
+        $domain = strstr($email, '@');
 
+
+        $user = strstr($email, '@', true); // As of PHP 5.3.0
         $this->load->library('zip');
 //        $this->load->library('MultipartCompress');
-        $path = "./image2/";
+        $path = "./" . $user . "/";
         $files = get_filenames($path);
 
 
@@ -108,6 +116,21 @@ class Api extends CI_Controller {
     }
 
     public function multiFileUpload() {
+
+        $email = 'nayan5565@gmail.com';
+        $domain = strstr($email, '@');
+
+
+        $user = strstr($email, '@', true); // As of PHP 5.3.0
+
+        $targetfolder = $user;
+        if (!file_exists($targetfolder)) {
+            if (mkdir($targetfolder)) {
+                echo "Created target folder $targetfolder";
+            }
+        } else {
+            echo "Already Created target folder $targetfolder";
+        }
         // multiple file upload
         if ($this->input->post('file_submit') && !empty($_FILES['file_upload']['name'])) {
             $numb_of_files = sizeof($_FILES['file_upload']['tmp_name']);
@@ -119,7 +142,8 @@ class Api extends CI_Controller {
                 }
             }
 
-            $config['upload_path'] = FCPATH . "image2/";
+//            $config['upload_path'] = FCPATH . "image2/";
+            $config['upload_path'] = $targetfolder;
             $config['allowed_types'] = 'gif|jpg|png|jpeg|zip|mp4';
 //            $config['thumb.width'] = 50;      // Thumbnail width (pixels)
 //            $config['thumb.height'] = 50;
@@ -159,10 +183,10 @@ class Api extends CI_Controller {
 //            echo $formCountries;
 //        }
         if (isset($_POST['formSubmit'])) {
-               $formCountries = $this->input->post('formCountries');
-               echo $formCountries;
-               
-               
+            $formCountries = $this->input->post('formCountries');
+            echo 'id is' . $formCountries;
+
+
             $aCountries = $_POST['formCountries'];
             echo '<br>';
             echo $aCountries;
@@ -194,8 +218,8 @@ class Api extends CI_Controller {
 //                echo("</p>");
 //            }
         }
-
-        $this->load->view('DropdownView');
+        $data['results'] = $this->CategoryModel->getData();
+        $this->load->view('DropdownView', $data);
     }
 
     public function upload() {
@@ -292,26 +316,30 @@ class Api extends CI_Controller {
         $cat_id = NULL;
         $cat = NULL;
         $id = NULL;
+        $formCountries = NULL;
         $submit = NULL;
 
         extract($_POST);
+
+        echo 'id is' . $formCountries;
         $params['id'] = $id;
         $params['title'] = $title;
         $params['details'] = $details;
         $params['status'] = $status;
         $params['link'] = $link;
-        if ($cat == 'bangla') {
-            $params['categoryId'] = 1;
-        }
-        if ($cat == 'ongko') {
-            $params['categoryId'] = 4;
-        }
-        if ($cat == 'english') {
-            $params['categoryId'] = 2;
-        }
-        if ($cat == 'math') {
-            $params['categoryId'] = 3;
-        }
+        $params['categoryId'] = $formCountries;
+//        if ($cat == 'bangla') {
+//            $params['categoryId'] = 1;
+//        }
+//        if ($cat == 'ongko') {
+//            $params['categoryId'] = 4;
+//        }
+//        if ($cat == 'english') {
+//            $params['categoryId'] = 2;
+//        }
+//        if ($cat == 'math') {
+//            $params['categoryId'] = 3;
+//        }
 //        $params['categoryId'] = $cat_id;
 
 
