@@ -65,6 +65,12 @@ class Item extends CI_Controller {
         $submit = NULL;
 
         extract($_POST);
+//        if (isset($_POST['inser'])) {
+//            if ($_POST['title'] == "") {
+//                $error_msg['title'] = 'title is required';
+//                echo 'title required';
+//            }
+//        }
 
         echo 'id is' . $formCountries;
         $params['title'] = $title;
@@ -85,13 +91,19 @@ class Item extends CI_Controller {
 //            $params['categoryId'] = 3;
 //        }
 //        $params['categoryId'] = $cat_id;
+//        if ($title == "") {
+//            echo 'title required</br>';
+//        }
+        if (isset($submit)) {
+            if ($title == "") {
+                echo 'title required</br>';
+            }
+            if ($formCountries == 'NULL') {
+                $error_msg['formCountries'] = 'Country is required';
 
+                echo 'Category required';
+            } else {
 
-        if ($formCountries == 'NULL') {
-            $error_msg['formCountries'] = 'Country is required';
-            echo 'Category required';
-        } else {
-            if (isset($submit)) {
                 $this->ItemModel->insert($params);
             }
         }
@@ -125,12 +137,16 @@ class Item extends CI_Controller {
             $this->ItemModel->update($params);
         }
         $data['results'] = $this->CategoryModel->getData();
-        $this->load->view('UpdateItem',$data);
+        $this->load->view('UpdateItem', $data);
     }
 
     public function listView() {
         $data['records'] = $this->ItemModel->getData();
         $this->load->view('ListView', $data);
+    }
+
+    public function select() {
+        $this->load->view('InsertItem');
     }
 
     public function insertItems() {

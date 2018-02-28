@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Test insert/update</title>
+        <title>update</title>
 
-        <style> 
+       <style> 
             input[type=text] {
                 width: 40%;
                 box-sizing: border-box;
@@ -30,23 +30,23 @@
                 background-color: greenyellow;
                 border-radius: 10px;
             }
-            /*            select {
-            
-                            width: 40%;
-                            height: 6%;
-                            line-height:30px;
-                            background:#f4f4f4;
-                        } 
-                        option {
-                            color: red;
-                        }*/
-            .bootstrap-select.formCountries.show-tick .dropdown-menu option.selected a span.check-mark{
+            select {
+
+                width: 40%;
+                height: 7%;
+                line-height:30px;
+                background:#f4f4f4;
+            } /*
+            option {
+                color: red;
+            }*/
+/*            .bootstrap-select.formCountries.show-tick .dropdown-menu option.selected a span.check-mark{
                 position: absolute;
                 display: inline-block;
-                left: 5px; /*changed from right:15*/
+                left: 5px; changed from right:15
                 margin-top: 5px;
-            }
-        </style>
+            }*/
+            </style>
     </head>
     <body>
 
@@ -72,7 +72,7 @@
                 echo $error_msg['formCountries'];
             }
             ?> 
-            </br>
+            <br/>
             <button type="submit" name="submit" value="save">Save</button>
         </form>
 
