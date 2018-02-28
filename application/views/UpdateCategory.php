@@ -22,13 +22,14 @@
             }
 
             input[type=text]:focus {
-                width: 30%;
+                width: 40%;
+
             }
             button[type=submit]{
                 margin: 8px 0;
                 background-color: greenyellow;
                 border-radius: 10px;
-            }
+            }          
         </style>
     </head>
     <body>
@@ -36,20 +37,10 @@
     <center>
 
         <form  method="Post">
-
-
- <!--<input type="text" name="id" placeholder="Id"><br/>-->
+            <input type="text" name="id" placeholder="Id"><br/>
             <input type="text" name="title" placeholder="Title"><br/>
             <input type="text" name="details" placeholder="Details"><br/>
-            <input type="text" name="link" placeholder="Link"><br/>
-            <!--<input type="text" name="cat" placeholder="Category"><br/>-->
             <input value="" type="text" name="status" placeholder="Status"><br/>
-            <select class="bd"  name="formCountries">
-                <?php foreach ($results as $rec) { ?>
-                    <option value="<?php echo $rec->id; ?>"><?php echo $rec->title; ?></option>
-                <?php } ?>    
-            </select>
-            </br>
             <button type="submit" name="submit" value="save">Save</button>
         </form>
 

@@ -16,12 +16,13 @@ class CategoryModel extends CI_Model {
 
     public function delete($params) {
         foreach ($params as $user_id) {
-            $field = array(
-                'del_flag' => 1,
-            );
+//            $field = array(
+//                'del_flag' => 1,
+//            );
             $condition = array('id' => $user_id);
             $this->db->where($condition);
-            $this->db->update('category', $field);
+             $this->db->delete("category");
+//            $this->db->update('category', $field);
         }
     }
 
@@ -40,10 +41,7 @@ class CategoryModel extends CI_Model {
             'title' => $params['title'],
             'details' => $params['details'],
             'status' => $params['status'],
-            'link' => $params['link'],
-            'categoryId' => $params['categoryId'],
             'create_date' => date('Y-m-d H:i:s'),
-            'id' => $params['id'],
         );
 
 
@@ -55,20 +53,16 @@ class CategoryModel extends CI_Model {
         $fields = array(
             'title' => $params['title'],
             'details' => $params['details'],
-            'status' => $params['status'],
-            'link' => $params['link'],
-            'categoryId' => $params['categoryId']
-
-//            'id' => $params['id']
+            'status' => $params['status']
         );
         $condition = array('id' => $params['id']);
-        $query = $this->db->get_where('items', $condition);
+        $query = $this->db->get_where('category', $condition);
         $result = $query->result_array();
 
         if (!empty($result)) {
             $fields['update_date'] = date('Y-m-d H:i:s');
             $this->db->where($condition);
-            $this->db->update('items', $fields);
+            $this->db->update('category', $fields);
         } else {
             $fields['create_date'] = date('Y-m-d H:i:s');
             $this->db->insert('category', $fields);

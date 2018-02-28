@@ -9,7 +9,7 @@
             foreach ($records as $rec) {
 //                echo '<li>' . $rec->status . ' </li>';
 
-                echo '<li>' . $rec->id . "  " . $rec->title . "  " . $rec->details . "  " . $rec->categoryId . "  " . $rec->link . "  " . $rec->status . ' </li>';
+                echo '<li>' . $rec->id . "  " . $rec->title . "  " . $rec->details .  $rec->status . ' </li>';
             }
             ?>
         </ol>  

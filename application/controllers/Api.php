@@ -343,10 +343,15 @@ class Api extends CI_Controller {
 //        $params['categoryId'] = $cat_id;
 
 
-
-        if (isset($submit)) {
-            $this->ItemModel->insert($params);
+        if ($formCountries == 'NULL') {
+            $error_msg['formCountries'] = 'Country is required';
+            echo 'Category required';
+        } else {
+            if (isset($submit)) {
+                $this->ItemModel->insert($params);
+            }
         }
+
         $data['getCatId'] = $getCatId;
         $data['results'] = $this->CategoryModel->getData();
         $this->load->view('InsertView', $data);
