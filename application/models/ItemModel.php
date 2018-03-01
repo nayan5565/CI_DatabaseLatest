@@ -65,6 +65,12 @@ class ItemModel extends CI_Model {
         }
     }
 
+    public function deleteData($id) {
+        $condition = $id;
+        $this->db->where($condition);
+        $this->db->delete('items');
+    }
+
     public function getUser($param) {
         $this->db->select($param['field']); //select fields from table
         $this->db->order_by($param['order']);

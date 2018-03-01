@@ -13,6 +13,16 @@ class Item extends CI_Controller {
         $this->load->model('CategoryModel');
     }
 
+    public function delete() {
+        $id = NULL;
+        $submit = NULL;
+
+        extract($_POST);
+        $params['id'] = $id;
+        $this->ItemModel->deleteData($params);
+        $this->load->view('SingleItemDelete');
+    }
+
     public function deleteForum() {
 
         $user_id = NULL;
@@ -48,11 +58,16 @@ class Item extends CI_Controller {
         if (isset($submit)) {
 
             $data['records'] = $this->ItemModel->jointTbl($cat_id);
-            $this->load->view('table', $data);
+//            redirect(base_url() . 'item/table');
+            $this->table($data);
         }
-//         $this->ItemModel->test();
 
         $this->load->view('JoinView');
+    }
+
+    public function table($data) {
+//        $data['records'] = $this->ItemModel->jointTbl($cat_id);
+        $this->load->view('table', $data);
     }
 
     public function insertForum() {

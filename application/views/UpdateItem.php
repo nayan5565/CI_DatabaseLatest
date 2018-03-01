@@ -2,27 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>update</title>
+        <title>Test insert/update</title>
 
-       <style> 
+        <style> 
             input[type=text] {
-                width: 40%;
+                width: 100%;
                 box-sizing: border-box;
                 border: 2px solid #ccc;
                 margin: 8px 0;
                 border-radius: 4px;
                 font-size: 16px;
                 background-color: white;
-                background-image: url('searchicon.png');
+
                 background-position: 10px 10px; 
                 background-repeat: no-repeat;
+
                 padding: 12px 20px 12px 40px;
                 /*                -webkit-transition: width 0.4s ease-in-out;
                                 transition: width 0.4s ease-in-out;*/
             }
-
+            h1{
+                color: mistyrose;
+            }
             input[type=text]:focus {
-                width: 40%;
+                width: 100%;
 
             }
             button[type=submit]{
@@ -30,50 +33,121 @@
                 background-color: greenyellow;
                 border-radius: 10px;
             }
+
+            table{
+                width: 40%;
+                height: 70%;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                margin: 8px 0;
+
+                border-radius: 4px;
+                font-size: 16px;
+                background-color: moccasin;
+                background-image: url('searchicon.png');
+                background-position: 10px 10px; 
+                background-repeat: no-repeat;
+                padding: 12px 20px 12px 40px;
+            }
+            /*             tr {
+            
+                            width: 60%;
+                            
+                        } 
+                         td {
+            
+                            width: 60%;
+                            
+                        } */
             select {
 
-                width: 40%;
-                height: 7%;
+                width: 100%;
+                height: 70%;
                 line-height:30px;
                 background:#f4f4f4;
             } /*
             option {
                 color: red;
             }*/
-/*            .bootstrap-select.formCountries.show-tick .dropdown-menu option.selected a span.check-mark{
-                position: absolute;
-                display: inline-block;
-                left: 5px; changed from right:15
-                margin-top: 5px;
-            }*/
-            </style>
+            /*            .bootstrap-select.formCountries.show-tick .dropdown-menu option.selected a span.check-mark{
+                            position: absolute;
+                            display: inline-block;
+                            left: 5px; changed from right:15
+                            margin-top: 5px;
+                        }*/
+        </style>
     </head>
     <body>
 
     <center>
 
-        <form  method="Post">
+        <form  method="Post" name="inser">
 
 
-            <input type="text" name="id" placeholder="Id"><br/>
-            <input type="text" name="title" placeholder="Title"><br/>
-            <input type="text" name="details" placeholder="Details"><br/>
-            <input type="text" name="link" placeholder="Link"><br/>
-            <input value="" type="text" name="status" placeholder="Status"><br/>
-            <select class="bd"  name="formCountries">
-                <option value="NULL">Select Category</option>
-                <?php foreach ($results as $rec) { ?>
-                    <option value="<?php echo $rec->id; ?>"><?php echo $rec->title; ?></option>
-                <?php } ?>    
-            </select>
-            <?php
-            if (isset($error_msg['formCountries'])) {
+            <table>
 
-                echo $error_msg['formCountries'];
-            }
-            ?> 
-            <br/>
-            <button type="submit" name="submit" value="save">Save</button>
+                <h1>Data Update</h1>
+                <tr class="row">
+                    <td>
+                        <input type="text" name="id" placeholder="Id"><br/>
+
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="text" name="title" placeholder="Title"><br/>
+                        <?php
+                        if (isset($error_msg['title'])) {
+
+                            echo $error_msg['title'];
+                        }
+                        ?> 
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="text" name="details" placeholder="Details"><br/>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="text" name="link" placeholder="Link"><br/>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input value="" type="text" name="status" placeholder="Status"><br/>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <select class="bd"  name="formCountries">
+                            <option value="NULL">Select Category</option>
+                            <?php foreach ($results as $rec) { ?>
+                                <option value="<?php echo $rec->id; ?>"><?php echo $rec->title; ?></option>
+                            <?php } ?>    
+                        </select>
+
+                        <?php
+                        if (isset($error_msg['formCountries'])) {
+
+                            echo $error_msg['formCountries'];
+                        }
+                        ?> 
+                    </td>
+                </tr>
+
+
+
+<!--<input type="text" name="cat" placeholder="Category"><br/>-->
+
+            </table>
+
+
+
+            </br>
+            <button id="one" type="submit" name="submit" value="save">Save</button>
+
         </form>
 
 

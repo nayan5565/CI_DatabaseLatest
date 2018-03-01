@@ -86,30 +86,14 @@
 
             <table>
 
-                <h1>Data Update</h1>
+                <h1>Data Delete</h1>
                 <tr class="row">
                     <td>
                         <input type="text" name="id" placeholder="Id"><br/>
 
                     </td>
                 </tr>
-                <tr class="row">
-                    <td>
-                        <input type="text" name="title" placeholder="Title"><br/>
-
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td>
-                        <input type="text" name="details" placeholder="Details"><br/>
-                    </td>
-                </tr>
-
-                <tr class="row">
-                    <td>
-                        <input value="" type="text" name="status" placeholder="Status"><br/>
-                    </td>
-                </tr>
+               
 
 
 
@@ -121,7 +105,7 @@
 
 
             </br>
-            <button id="one" type="submit" name="submit" value="save">Save</button>
+            <button id="one" type="submit" name="submit" value="Delete">Delete</button>
 
         </form>
 
