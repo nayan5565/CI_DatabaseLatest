@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Item.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/LoginView.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/controllers/Login.php</file>
-            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/InsertItem.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/models/ItemModel.php</file>
+            <file>file:/C:/xampp/htdocs/Codeigniter/application/views/JoinView.php</file>
         </group>
     </open-files>
 </project-private>

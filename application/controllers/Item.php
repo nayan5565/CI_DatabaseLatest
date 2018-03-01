@@ -55,17 +55,24 @@ class Item extends CI_Controller {
         $submit = NULL;
 
         extract($_POST);
-        if (isset($submit)) {
-
-            $data['records'] = $this->ItemModel->jointTbl($cat_id);
-//            redirect(base_url() . 'item/table');
-            $this->table($data);
+        if ($this->input->method()=='post'){
+            if (isset($submit)) {
+            redirect(base_url() . 'item/table/'. $cat_id);
+//            $this->table($data);
         }
+        } else {
+            $this->load->view('JoinView');
+        }
+        
 
-        $this->load->view('JoinView');
+        
     }
 
-    public function table($data) {
+    public function table() {
+        $data = array();
+        $cat_id = $this->uri->segment(3);
+        print_r($cat_id);
+        $data['records'] = $this->ItemModel->jointTbl($cat_id);
 //        $data['records'] = $this->ItemModel->jointTbl($cat_id);
         $this->load->view('table', $data);
     }
