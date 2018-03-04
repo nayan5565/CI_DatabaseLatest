@@ -42,12 +42,12 @@ class FileUpload extends CI_Controller {
     }
 
     public function index() {
-       
+
         date_default_timezone_set('Asia/Dhaka');
         echo date('Y m d h:i:s A');
         $path = "./" . $user . "/";
         $files = get_filenames($path);
-        
+
         foreach ($files as $f) {
             $fileSize = filesize($path . $f);
             echo '</br>size of the file is : ' . $fileSize / 1024 . ' kb';
@@ -58,10 +58,9 @@ class FileUpload extends CI_Controller {
         $this->load->view('DownloadZipView');
     }
 
-   
-
     public function multiFileUpload() {
-
+        date_default_timezone_set('Asia/Dhaka');
+        date('d m y h:i:s A');
         $email = 'nayan5565@gmail.com';
         $domain = strstr($email, '@');
 
@@ -100,6 +99,7 @@ class FileUpload extends CI_Controller {
                 $_FILES['file_upload']['tmp_name'] = $files['tmp_name'][$i];
                 $_FILES['file_upload']['error'] = $files['error'][$i];
                 $_FILES['file_upload']['size'] = $files['size'][$i];
+                echo $_FILES['file_upload']['name'] = $files['name'][$i];
 
                 $this->upload->initialize($config);
                 if ($this->upload->do_upload('file_upload')) {
@@ -108,6 +108,8 @@ class FileUpload extends CI_Controller {
 
                     $insert[$i]['path'] = $data['file_name'];
                     $insert[$i]['size'] = $data['file_size'];
+                    $insert[$i]['directory'] = $targetfolder;
+                    $insert[$i]['created '] = date('Y-m-d H:i:s');
 //                    echo '<pre>';
 //                    print_r($data);
 //                    echo '</pre>';
@@ -120,6 +122,10 @@ class FileUpload extends CI_Controller {
         );
 
         $this->load->view('MultiFileUpload', $this->data);
+    }
+
+    public function ima() {
+        $this->load->view('FileUploadView', array('error' => ''));
     }
 
     public function upload() {
@@ -163,4 +169,5 @@ class FileUpload extends CI_Controller {
         $this->db->insert('images', $data);
         echo($temp_name);
     }
+
 }

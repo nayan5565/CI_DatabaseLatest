@@ -25,7 +25,7 @@
     <body>
     <center>
         <?php echo $error; ?>
-        <form action="api/upload"  method="Post" enctype="multipart/form-data">
+        <form action="upload"  method="Post" enctype="multipart/form-data">
 
             <input type="file" name="image">
             <!--<input type="submit" name="submit" value="image upload">-->

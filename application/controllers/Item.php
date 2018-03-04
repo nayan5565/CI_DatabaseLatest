@@ -71,7 +71,6 @@ class Item extends CI_Controller {
     public function table() {
         $data = array();
         $cat_id = $this->uri->segment(3);
-        print_r($cat_id);
         $data['records'] = $this->ItemModel->jointTbl($cat_id);
 //        $data['records'] = $this->ItemModel->jointTbl($cat_id);
         $this->load->view('table', $data);
