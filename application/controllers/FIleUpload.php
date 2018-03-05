@@ -17,6 +17,62 @@ class FileUpload extends CI_Controller {
 //        $this->load->view('CategoryView', $data);
     }
 
+    public function readAllFoldersFromFolder() {
+        $directory = "./" . 'image3' . "/";
+        $files = glob($directory . "*");
+        echo 'folder size = ' . count($files) . '</br>';
+        foreach ($files as $f) {
+            if (is_dir($f)) {
+                echo 'folderName = ' . $f . '</br>';
+                $total = get_filenames($f);
+                echo 'file size = ' . count($total) . '</br>';
+                foreach ($total as $t) {
+                    echo 'file name = ' . $t . ' folder is ' . $f . '</br>';
+                }
+            }
+        }
+    }
+
+    public function readAllFoldersFromDirectory() {
+        date_default_timezone_set('Asia/Dhaka');
+        //read all file from folders and file save into table in db by folder_wise
+        $directory = "./" . 'image3' . "/";
+
+        $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+
+        while ($it->valid()) {
+
+            if (!$it->isDot()) {
+//                
+                echo 'SubPathName: ' . $it->getSubPathName() . "</br>";
+                echo 'size: ' . $it->getSize() / 1024 . "</br>";
+                echo 'SubPath:     ' . $it->getSubPath() . "</br>";
+//                echo 'Key:         ' . $it->key() . "</br>";
+                $data = array(
+                    'path' => base_url() . $directory . $it->getSubPathName(),
+                    'directory' => $it->getSubPath(),
+                    'size' => $it->getSize() / 1024,
+                    'created ' => date('Y-m-d H:i:s')
+                );
+                $this->db->insert('images', $data);
+            }
+
+            $it->next();
+//            $this->db->insert_batch('images', $insert);
+        }
+//
+//        $path = "./" . 'image3' . "/";
+//        $total = get_filenames($path);
+//        echo count($total);
+//
+//        foreach ($total as $f) {
+//            echo $f.'</br>';
+//        }
+//         for ($i = 0; $i < $total; $i++) {
+//             echo $total[$i];
+//         }
+    }
+
     public function createFolder() {
         $email = 'nayan5565@gmail.com';
         $domain = strstr($email, '@');
@@ -125,6 +181,7 @@ class FileUpload extends CI_Controller {
     }
 
     public function ima() {
+        echo basename(__DIR__);
         $this->load->view('FileUploadView', array('error' => ''));
     }
 
@@ -171,6 +228,8 @@ class FileUpload extends CI_Controller {
     }
 
     public function multiFile() {
+
+        echo basename(dirname(__FILE__));
         //$files = array_filter($_FILES['upload']['name']); something like that to be used before processing files.
 // Count # of uploaded files in array
         $total = count($_FILES['upload']['name']);
@@ -189,9 +248,7 @@ class FileUpload extends CI_Controller {
                 if (move_uploaded_file($tmpFilePath, $newFilePath)) {
 
                     //Handle other code here
-                    $insert[$i]['path'] = base_url().$newFilePath;
-
-                    
+                    $insert[$i]['path'] = base_url() . $newFilePath;
                 }
             }
         }
