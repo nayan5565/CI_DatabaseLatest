@@ -18,16 +18,26 @@ class FileUpload extends CI_Controller {
     }
 
     public function readAllFoldersFromFolder() {
+        date_default_timezone_set('Asia/Dhaka');
         $directory = "./" . 'image3' . "/";
         $files = glob($directory . "*");
-        echo 'folder size = ' . count($files) . '</br>';
+        echo 'folder list = ' . count($files) . '</br>';
         foreach ($files as $f) {
             if (is_dir($f)) {
                 echo 'folderName = ' . $f . '</br>';
                 $total = get_filenames($f);
-                echo 'file size = ' . count($total) . '</br>';
+                echo 'file list = ' . count($total) . '</br>';
                 foreach ($total as $t) {
+                    $fileSize = filesize($f . '/' . $t) / 1024;
+                    echo 'file size ' . $fileSize . '</br>';
                     echo 'file name = ' . $t . ' folder is ' . $f . '</br>';
+                    $data = array(
+                        'path' => base_url() . $f . '/' . $t,
+                        'directory' => $f,
+                        'size' => $fileSize,
+                        'created ' => date('Y-m-d H:i:s')
+                    );
+                    $this->db->insert('images', $data);
                 }
             }
         }
