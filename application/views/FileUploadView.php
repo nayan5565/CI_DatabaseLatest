@@ -25,12 +25,12 @@
     <body>
     <center>
         <?php echo $error; ?>
-        <form action="upload"  method="Post" enctype="multipart/form-data">
+        <form action="multiFile"  method="Post" enctype="multipart/form-data">
+            <input name="upload[]" type="file" multiple="multiple" />
+                        <!--<input type="file" name="image[]">-->
+                        <!--<input type="submit" name="submit" value="image upload">-->
 
-            <input type="file" name="image">
-            <!--<input type="submit" name="submit" value="image upload">-->
-
-                        <button>Upload</button>
+            <button>Upload</button>
         </form>
     </center>
 </body>
